@@ -52,6 +52,12 @@ variable "subscription_alias" {
   description = "Alias for the subscription"
 }
 
+variable "management_group_id" {
+  type        = string
+  default     = ""
+  description = "Management Group ID to assign the subscription to"
+}
+
 variable "subscription_create" {
   type        = bool
   default     = true

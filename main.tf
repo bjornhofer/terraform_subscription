@@ -26,6 +26,13 @@ resource "azurerm_subscription" "main" {
   provider          = azurerm.subscription
 }
 
+resource "azurerm_management_group_subscription_association" "subscription_assignment" {
+  count              = var.subscription_create == true && length(var.management_group_id) > 0 ? 1 : 0
+  management_group_id = var.management_group_id
+  subscription_id     = azurerm_subscription.main[0].id
+  provider            = azurerm.subscription
+}
+
 data "azurerm_subscription" "current" {
   count    = var.subscription_create == false ? 1 : 0
   provider = azurerm.subscription
