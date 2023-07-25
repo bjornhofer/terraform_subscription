@@ -31,6 +31,7 @@ resource "azurerm_management_group_subscription_association" "subscription_assig
   management_group_id = var.management_group_id
   subscription_id     = azurerm_subscription.main[0].id
   provider            = azurerm.subscription
+  depends_on = [ azurerm_subscription.main ]
 }
 
 data "azurerm_subscription" "current" {
